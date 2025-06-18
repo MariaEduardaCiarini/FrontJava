@@ -1,0 +1,23 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+/* Caixa de texto */
+.text-field {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Botão */
+.button {
+    -fx-background-color: #1a1a1a;
+    -fx-text-fill: #00ffcc;
+    -fx-font-weight: bold;
+    -fx-border-color: #00ffcc;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}

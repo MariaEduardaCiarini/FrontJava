@@ -34,28 +34,34 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemDepartmentAction() {
-		loadView("/gui/DepartmentList.fxml");
+		loadView("/gui/DepartamentList.fxml");
 	}
 
 	@FXML
 	public void onMenuItemAboutAction() {
-		loadView("/gui/About.fxml");
+		loadView("/gui/DepartamentList.fxml");
 	}
 
 	@Override
 	public void initialize(URL uri, ResourceBundle rb) {
-	
+
 	}
 
 	private synchronized void loadView(String absoluteName) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			System.out.println("Tentando carregar: " + absoluteName);
+
+			URL fxmlLocation = getClass().getResource(absoluteName);
+			if (fxmlLocation == null) {
+				throw new IOException("Arquivo FXML não encontrado: " + absoluteName);
+			}
+
+			FXMLLoader loader = new FXMLLoader(fxmlLocation);
 			VBox newVBox = loader.load();
 
 			Scene mainScene = Main.getMainScene();
 			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
 
-			
 			Node mainMenu = mainVBox.getChildren().isEmpty() ? null : mainVBox.getChildren().get(0);
 
 			mainVBox.getChildren().clear();
@@ -66,6 +72,10 @@ public class MainViewController implements Initializable {
 
 		} catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Erro ao carregar a view", e.getMessage(), AlertType.ERROR);
+			e.printStackTrace();
+		} catch (Exception ex) {
+			Alerts.showAlert("Erro inesperado", "Erro ao carregar a view", ex.getMessage(), AlertType.ERROR);
+			ex.printStackTrace();
 		}
 	}
 }
